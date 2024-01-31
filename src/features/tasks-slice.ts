@@ -1,9 +1,16 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 
 export type TasksState = {
   entities: Task[]
 }
+type DraftTask = Pick<Task, 'title'>;
 
+const createTask = (draftTask: DraftTask): Task => {
+  return {
+    id: nanoid(),
+    ...draftTask
+  }
+}
 const initialState: TasksState = {
   entities: []
 };
@@ -13,9 +20,13 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action: PayloadAction<Task>) => {
-      state.entities.unshift(action.payload)
+      const task = createTask(action.payload);
+      state.entities.unshift(task)
     },
     removeTask: (state) => state,
   }
 })
 
+export const tasksReducer = tasksSlice.reducer;
+export const { addTask, removeTask } = tasksSlice.actions
+export default tasksSlice
