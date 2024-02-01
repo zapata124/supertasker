@@ -3,7 +3,7 @@ import { PayloadAction, createSlice, nanoid } from "@reduxjs/toolkit";
 export type TasksState = {
   entities: Task[]
 }
-type DraftTask = Pick<Task, 'title'>;
+type DraftTask = RequireOnly<Task, 'title'>;
 
 const createTask = (draftTask: DraftTask): Task => {
   return {
