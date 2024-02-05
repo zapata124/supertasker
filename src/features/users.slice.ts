@@ -24,8 +24,8 @@ const usersSlice = createSlice({
       const user = createUser(action.payload);
       state.entities.unshift(user);
     },
-    removeUser: (state, action: PayloadAction<User>) => {
-      const index = state.entities.findIndex(user => user.id === action.payload.id);
+    removeUser: (state, action: PayloadAction<User['id']>) => {
+      const index = state.entities.findIndex(user => user.id === action.payload);
       state.entities.splice(index, 1)
     }
   }
