@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { addTask } from '../features/tasks-slice';
+import { useAppDispatch } from '../lib/hooks';
 
 const CreateTask = () => {
   const [newTaskTitle, setnewTaskTitle] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   return (
     <form
       className="create-task"

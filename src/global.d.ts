@@ -1,3 +1,6 @@
+// T ==> Type that is pass to the type function 
+// P ==> argument selected of the types from T
+// With Omit we are making P be the only required type and not part of Partial
 type RequireOnly<T, P extends keyof T> = Pick<T, P> & Partial<Omit<T, P>>;
 
 
